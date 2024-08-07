@@ -1,6 +1,7 @@
 const playBoard = document.querySelector(".play-board");
 const scoreElement = document.querySelector(".score");
 const highScoreElement = document.querySelector(".high-score");
+const controls = document.querySelectorAll(".controls .touch");
 
 let gameOver = false;
 let foodX, foodY;
@@ -48,6 +49,12 @@ const changeDirection = (e) => {
     console.log("right");
   }
 };
+controls.forEach(key => {
+  key.addEventListener("click", () => changeDirection({
+    key: key.dataset.key
+  }));
+  
+});
 
 const initGame = () => {
   if(gameOver) return handleGameOver();
@@ -95,6 +102,6 @@ const initGame = () => {
 };
 
 changeFoodPosition();
-setIntervalId = setInterval(initGame, 125);
+setIntervalId = setInterval(initGame, 200);
 
 document.addEventListener("keydown", changeDirection);
