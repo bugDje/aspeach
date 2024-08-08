@@ -10,15 +10,8 @@ font-optical-sizing: auto;
 html,
 body{
     height: 100%;
+    background-color: whitesmoke;
 }
-h1{
-    text-align: center;
-    margin-bottom: 10px;
-}
-.logo img{
-width: 90vh;
-}
-
 .body{
     display: flex;
     align-items: center;
@@ -30,17 +23,32 @@ width: 90vh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    width: 65vmin;
-    height: 70vmin;
+    width: 78vmin;
+    height: 90vmin;
     background-color: greenyellow;
     border: 3px solid forestgreen;
     border-radius: 5px;
+}
+.wrapper h1 {
+    text-shadow: 
+    1px 1px 0px lightgreen, /*bas droit */
+    2px 2px 2px black, /*bas droit */
+    1px -1px 2px black, /* haut droit*/
+    -1px -1px 2px black, /*haut gauche*/
+    -1px 1px 2px black; /*bas gauche*/
+    letter-spacing: 9px;
+    font-size: calc(3*(0.5vmin + 1vmax)) ;
+    text-align: center;
+    padding: 0;
+    border-bottom: 5px double darkgreen;
+    margin: 0;
+color: forestgreen;
 }
 .game-details {
     color: darkgreen;
     font-size: 15px;
     font-weight: 500;
-    padding: 5px 15px;
+    padding: 0px 15px 5px;
     display:flex;
     justify-content: space-between;
 }
@@ -49,7 +57,7 @@ width: 90vh;
     width: 100%;
     background-color: lightgreen;
     display: grid;
-    grid-template: repeat(30,1fr) / repeat(30, 1fr);
+    grid-template: repeat(30, 1fr) / repeat(30, 1fr);
 }
 .play-board .food{
     background-color: #FA1;
@@ -97,15 +105,10 @@ img.touch:active{
     text-align: center;
   }
 
-  @media screen and (max-width:800px){
-    .logo img{
-    width: 50vh;
-    }    
+  @media screen and (max-width:800px){ 
     .wrapper {
-        margin: 7px;
         width: 70vmin;
-        height: 80vmin;
-
+        height: 90vmin;
     }
     .controls{
         display: grid;  
