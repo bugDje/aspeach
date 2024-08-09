@@ -5,6 +5,9 @@ const controls = document.querySelectorAll(".controls .touch");
 const facile = document.querySelector(".facile");
 const moyen = document.querySelector(".moyen");
 const difficile = document.querySelector(".difficile");
+const impossible = document.querySelector(".impossible");
+const menu = document.querySelector(".play-menu");
+
 
 let gameOver = false;
 let foodX, foodY;
@@ -14,21 +17,44 @@ let snakeBody = [];
 let velocityX = 0,
   velocityY = 0;
 let setIntervalId;
-let vitesse = 100;
+let vitesse = 125;
 let score = 0;
+let cre = false;
 console.log(vitesse);
+
+const croque = () => {
+  const audio = new Audio()
+    audio.src = "./audio/s-croque.mp3";
+    audio.play();  
+};
+const mur = () => {
+  const audio = new Audio()
+    audio.src = "./audio/s-mur.mp3";
+    audio.play();  
+};
+const pop = () => {
+  const audio = new Audio()
+    audio.src = "./audio/pop.mp3";
+    audio.play();  
+};
 
 // Meilleur score stocké dans le local Storage
 let highScore = localStorage.getItem("high-score") || 0;
 highScoreElement.innerText = `Meilleur Score: ${highScore}`;
 
 const crescendo = () => {
-  setIntervalId = setInterval(initGame, vitesse);
+  if(cre === true){
+    clearInterval(setIntervalId);
+    setIntervalId = setInterval(initGame, vitesse);
+    vitesse--;
+
+    console.log("cre actif")
+   }
 };
 
 const changeFoodPosition = () => {
-  foodX = Math.floor(Math.random() * 30) + 1;
-  foodY = Math.floor(Math.random() * 30) + 1;
+    foodX = Math.floor(Math.random() * 30) + 1;
+    foodY = Math.floor(Math.random() * 30) + 1;
 };
 
 const handleGameOver = () => {
@@ -71,17 +97,16 @@ const initGame = () => {
 
   // Quand le serpent mange le fruit
   if (snakeX === foodX && snakeY === foodY) {
+    snakeBody.push([foodX,foodY]);
     changeFoodPosition();
-    snakeBody.push([foodX, foodY]);
+    pop();   
     score++;
-    clearInterval(setIntervalId);
-    vitesse--;
     crescendo();
     console.log(vitesse);
     highScore = score >= highScore ? score : highScore;
     localStorage.setItem("high-score", highScore);
     scoreElement.innerText = `Score: ${score}`;
-    highScoreElement.innerText = `Meilleur Score: ${highScore}`;
+    highScoreElement.innerText = `Meilleur Score: ${highScore}`; 
   }
   // synchronise la div avec la tête du serpent
   for (let i = snakeBody.length - 1; i > 0; i--) {
@@ -96,7 +121,9 @@ const initGame = () => {
 
   // perdu si le serpent touche le mur
   if (snakeX <= 0 || snakeX > 30 || snakeY <= 0 || snakeY > 30) {
+    mur();
     gameOver = true;
+
   }
 
   //ajoute une div quand le serpert mange un fruit
@@ -109,6 +136,7 @@ const initGame = () => {
       snakeBody[0][1] === snakeBody[i][1] &&
       snakeBody[0][0] === snakeBody[i][0]
     ) {
+      croque();
       gameOver = true;
     }
   }
@@ -121,15 +149,25 @@ changeFoodPosition();
 facile.addEventListener("click", () => {
   setIntervalId = setInterval(initGame, 200);
   vitesse = 200;
+  menu.style.visibility = "hidden";
   console.log(facile);
 });
 moyen.addEventListener("click", () => {
-  setIntervalId = setInterval(initGame, 125);
-  vitesse = 125;
+  setIntervalId = setInterval(initGame, 150);
+  vitesse = 150;
+  menu.style.visibility = "hidden";
 });
+
 difficile.addEventListener("click", () => {
-  setIntervalId = setInterval(initGame, 50);
-  vitesse = 50;
+  setIntervalId = setInterval(initGame, 100);
+  vitesse = 100;
+  menu.style.visibility = "hidden";
+});
+impossible.addEventListener("click", () => {
+  setIntervalId = setInterval(initGame, 125);
+  vitesse;
+  cre = true;
+  menu.style.visibility = "hidden";
 });
 
 document.addEventListener("keydown", changeDirection);

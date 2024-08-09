@@ -13,25 +13,62 @@
     <div class="dje-wrap">
       <section>
         <div class="body">
-          <button class="facile">Facile</button>
-          <button class="moyen">Moyen</button>
-          <button class="difficile">difficile</button>
-          <button class="difficile">Impossible</button>
-        <div class="wrapper">
-          <h1>/* AsPeach */</h1>
-          <div class="game-details">
-            <span class="score">Score: 0</span>
-            <span class="high-score"></span>
+          <div class="play-menu">
+            <h2 class="titre-menu">Bienvenue sur le jeu AsPeach !</h2>
+            <p>
+              Tu es un serpent (<span style="color: forestgreen">■</span>)
+              et tu dois manger un fruit (<span style="color: #fa1">■</span>)
+              pour grandir.<br />
+              <span style="font-size: 14px;">P.S: Attention au mur et ne te mords pas !</span>
+            </p>
+            <h3 class="mode">Mode Normal</h3>
+            <ul class="wrap-liste">
+              <li class="facile">Facile</li>
+              <li class="moyen">Moyen</li>
+              <li class="difficile">Difficile</li>
+            </ul>
+            <h3 class="mode">Mode Crescendo</h3>
+            <p style="font-size: 14px;">(plus tu manges et plus ton serpent va vite)</p>
+            <ul class="wrap-liste">
+              <li class="impossible">Crescendo</li>
+            </ul>
           </div>
-          <div class="play-board"></div>
-          <div class="controls">
-            <img data-key="ArrowLeft" class="touch" src="image/left.svg" alt="touche left">
-            <img data-key="ArrowUp" class="touch" src="image/up.svg" alt="touche left">
-            <img data-key="ArrowRight" class="touch" src="image/right.svg" alt="touche left">
-            <img data-key="ArrowDown" class="touch" src="image/down.svg" alt="touche left">
+          <div class="wrapper">
+            <h1>/* AsPeach */</h1>
+            <div class="game-details">
+              <span class="score">Score: 0</span>
+              <span class="high-score"></span>
+            </div>
+            <div class="play-board"></div>
+            <div class="play-resultat"></div>
+            <div class="controls">
+              <img
+                data-key="ArrowLeft"
+                class="touch"
+                src="image/left.svg"
+                alt="touche left"
+              />
+              <img
+                data-key="ArrowUp"
+                class="touch"
+                src="image/up.svg"
+                alt="touche left"
+              />
+              <img
+                data-key="ArrowRight"
+                class="touch"
+                src="image/right.svg"
+                alt="touche left"
+              />
+              <img
+                data-key="ArrowDown"
+                class="touch"
+                src="image/down.svg"
+                alt="touche left"
+              />
+            </div>
           </div>
         </div>
-    </div>
       </section>
     </div>
     <footer>
