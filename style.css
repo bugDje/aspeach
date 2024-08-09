@@ -10,14 +10,15 @@
 html,
 body {
   height: 100%;
-  background-color: whitesmoke;
+ background-image: url(./image/jungle.jpg);
 }
 .body {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.play-menu {
+/* 2 */
+.play-mode {
   padding: 7px;
   color: darkgreen;
   font-weight: 500;
@@ -32,24 +33,44 @@ body {
   align-items: center;
   overflow: hidden;
   width: 66vmin;
-  height: 60vmin;
+  height: 62vmin;
+  top: 115px;
+  visibility: Hidden;
+}
+/* 1 */
+.play-menu {
+  padding: 7px;
+  color: darkgreen;
+  font-weight: 500;
+  border-top: 3px ridge darkgreen;
+  box-shadow: inset 1px 1px 3px black;
+  background-color: greenyellow;
+  text-align: justify;
+  position: absolute;
+  margin: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  width: 66vmin;
+  height: 62vmin;
   top: 115px;
   visibility: visible;
-  
 }
 .play-menu .titre-menu {
-    margin-bottom: 7px;
+  margin-bottom: 7px;
   color: darkgreen;
   text-shadow: 0px 0px 1px black;
 }
-ul.wrap-liste {
+div.play-menu ul.wrap-liste {
   display: flex;
-  margin: 5px;
+  margin: 20px;
   list-style: none;
 }
 ul.wrap-liste li {
-    user-select: none;
-    padding: 2px 5px;
+  user-select: none;
+  padding: 2px 5px;
   cursor: pointer;
   box-shadow: 1px 1px 2px black;
   border-radius: 7px;
@@ -64,17 +85,58 @@ ul.wrap-liste li {
 }
 ul.wrap-liste li:hover {
   color: greenyellow;
-
-
 }
 ul.wrap-liste li:active {
-    box-shadow: inset 1px 1px 2px black;
-    font-size: 15px;
-
+  box-shadow: inset 1px 1px 2px black;
+  font-size: 15px;
 }
 .mode {
-    margin-top: 10px;
-    border-top: 1px solid darkgreen;
+  margin-top: 10px;
+  border-top: 1px solid darkgreen;
+}
+/* 3 */
+.game-over {
+  padding: 7px;
+  color: darkgreen;
+  font-weight: 500;
+  border-top: 3px ridge darkgreen;
+  box-shadow: inset 1px 1px 3px black;
+  background-color: greenyellow;
+  text-align: justify;
+  position: absolute;
+  margin: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  width: 66vmin;
+  height: 62vmin;
+  top: 115px;
+  visibility: hidden;
+}
+.game-over .titre-over {
+  font-size: calc(3 * (0.5vmin + 1.5vmax));
+  margin-bottom: 7px;
+  color: darkgreen;
+  text-shadow: 0px 0px 1px black;
+}
+div.game-over ul {
+  display: flex;
+  margin: 5px;
+  list-style: none;
+}
+div.game-over ul li {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  width: auto;
+}
+div.game-over ul li:first-child {
+  color: darkgreen;
+  background-color: lightgreen;
+  font-weight: 700;
+}
+div.game-over ul li:first-child:hover {
+  color: green;
 
 }
 
@@ -170,5 +232,4 @@ img.touch:active {
   .controls {
     display: grid;
   }
-  
 }

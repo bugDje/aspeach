@@ -7,6 +7,9 @@ const moyen = document.querySelector(".moyen");
 const difficile = document.querySelector(".difficile");
 const impossible = document.querySelector(".impossible");
 const menu = document.querySelector(".play-menu");
+const menuOver = document.querySelector(".game-over");
+const replay = document.querySelector(".replay");
+const quit = document.querySelector(".quit");
 
 
 let gameOver = false;
@@ -20,7 +23,10 @@ let setIntervalId;
 let vitesse = 125;
 let score = 0;
 let cre = false;
-console.log(vitesse);
+let fac = false;
+let moy = false;
+let dif = false;
+
 
 const croque = () => {
   const audio = new Audio()
@@ -47,7 +53,6 @@ const crescendo = () => {
     clearInterval(setIntervalId);
     setIntervalId = setInterval(initGame, vitesse);
     vitesse--;
-
     console.log("cre actif")
    }
 };
@@ -61,9 +66,23 @@ const handleGameOver = () => {
   console.log("handlegameover");
   //message de fin de jeu et recharge la page
   clearInterval(setIntervalId);
-  alert("Perdu !! Recommencer?");
-  location.reload();
+  menuOver.style.visibility = "visible";
 };
+
+quit.addEventListener("click", ()=>{
+  location.reload();
+});
+replay.addEventListener("click", ()=>{
+  if(cre === true){
+    location.reload();
+    console.log("replay");
+  setIntervalId = setInterval(initGame, 125);
+  vitesse;
+  cre = true;
+  menuOver.style.visibility = "hidden";
+ 
+  }
+});
 
 const changeDirection = (e) => {
   // associe touche clavier direction serpent && evite qu'on puisse revenir en arriere

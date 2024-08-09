@@ -12,15 +12,21 @@
   <body>
     <div class="dje-wrap">
       <section>
-        <div class="body">
+        <div class="body">                
           <div class="play-menu">
-            <h2 class="titre-menu">Bienvenue sur le jeu AsPeach !</h2>
-            <p>
-              Tu es un serpent (<span style="color: forestgreen">■</span>)
-              et tu dois manger un fruit (<span style="color: #fa1">■</span>)
-              pour grandir.<br />
-              <span style="font-size: 14px;">P.S: Attention au mur et ne te mords pas !</span>
-            </p>
+                    <h2 class="titre-menu">Bienvenue sur le jeu AsPeach !</h2>
+                    <p><u>But du jeu:</u> <br>
+                      Tu es un serpent (<span style="color: forestgreen">■</span>)
+                      et tu dois manger des fruits (<span style="color: #fa1">■</span>)
+                      pour grandir le plus possible.<br>              
+                    </p>
+                    <span style="font-size: 14px;">P.S: Attention au mur et ne te mords pas !                      
+                    </span>
+                    <ul class="wrap-liste">
+                      <li class="continuer">Continuer</li>
+                    </div>
+          
+          <div class="play-mode">
             <h3 class="mode">Mode Normal</h3>
             <ul class="wrap-liste">
               <li class="facile">Facile</li>
@@ -33,6 +39,15 @@
               <li class="impossible">Crescendo</li>
             </ul>
           </div>
+          <div class="game-over">
+            <h3 class="titre-over">Game Over</h3>
+            <ul class="wrap-liste">
+              <li class="replay">Recommencer</li>
+              <li class="quit">Quitter</li>
+            </ul>
+            <img src="./image/ipeach.svg" alt="pèche">
+            <img src="./image/isnake.svg" alt="serpent">
+          </div>
           <div class="wrapper">
             <h1>/* AsPeach */</h1>
             <div class="game-details">
@@ -40,7 +55,6 @@
               <span class="high-score"></span>
             </div>
             <div class="play-board"></div>
-            <div class="play-resultat"></div>
             <div class="controls">
               <img
                 data-key="ArrowLeft"
@@ -74,6 +88,7 @@
     <footer>
       <div class="dje-footer">
         <span>&copy; coDje 2024 - tous droits réservés</span>
+        <!-- <span><a href="www.freepik.com"> Image sur freepik.com</a></span> -->
       </div>
     </footer>
   </body>
