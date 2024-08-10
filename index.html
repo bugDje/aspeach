@@ -12,20 +12,26 @@
   <body>
     <div class="dje-wrap">
       <section>
-        <div class="body">                
+        <div class="body">
           <div class="play-menu">
-                    <h2 class="titre-menu">Bienvenue sur le jeu AsPeach !</h2>
-                    <p><u>But du jeu:</u> <br>
-                      Tu es un serpent (<span style="color: forestgreen">■</span>)
-                      et tu dois manger des fruits (<span style="color: #fa1">■</span>)
-                      pour grandir le plus possible.<br>              
-                    </p>
-                    <span style="font-size: 14px;">P.S: Attention au mur et ne te mords pas !                      
-                    </span>
-                    <ul class="wrap-liste">
-                      <li class="continuer">Continuer</li>
-                    </div>
-          
+            <h2 class="titre-menu">Bienvenue sur le jeu AsPeach !</h2>
+            <p>
+              <u>But du jeu:</u>
+              <br />
+              Tu es un serpent (
+              <span style="color: forestgreen">■</span>
+              )et tu dois manger des fruits (
+              <span style="color: #fa1">■</span>
+              )pour grandir le plus possible.<br />
+            </p>
+            <span style="font-size: 14px"
+              >P.S: Attention au mur et ne te mords pas !
+            </span>
+            <ul class="wrap-liste">
+              <li class="continuer">Continuer</li>
+            </ul>
+          </div>
+
           <div class="play-mode">
             <h3 class="mode">Mode Normal</h3>
             <ul class="wrap-liste">
@@ -34,7 +40,9 @@
               <li class="difficile">Difficile</li>
             </ul>
             <h3 class="mode">Mode Crescendo</h3>
-            <p style="font-size: 14px;">(plus tu manges et plus ton serpent va vite)</p>
+            <p style="font-size: 14px">
+              (plus tu manges et plus ton serpent va vite)
+            </p>
             <ul class="wrap-liste">
               <li class="impossible">Crescendo</li>
             </ul>
@@ -43,15 +51,17 @@
             <h3 class="titre-over">Game Over</h3>
             <ul class="wrap-liste">
               <li class="replay">Recommencer</li>
-              <li class="quit">Quitter</li>
+              <li class="replay">Changer le mode</li>
+              <li class="quit">Menu Principal</li>
             </ul>
-            <img src="./image/ipeach.svg" alt="pèche">
-            <img src="./image/isnake.svg" alt="serpent">
+            <img src="./image/ipeach.svg" alt="pèche" />
+            <img src="./image/isnake.svg" alt="serpent" />
           </div>
           <div class="wrapper">
             <h1>/* AsPeach */</h1>
             <div class="game-details">
               <span class="score">Score: 0</span>
+              <span class="mode-jeu">mode: 0</span>
               <span class="high-score"></span>
             </div>
             <div class="play-board"></div>

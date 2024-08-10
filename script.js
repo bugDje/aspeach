@@ -7,10 +7,11 @@ const moyen = document.querySelector(".moyen");
 const difficile = document.querySelector(".difficile");
 const impossible = document.querySelector(".impossible");
 const menu = document.querySelector(".play-menu");
+const mode = document.querySelector(".play-mode");
 const menuOver = document.querySelector(".game-over");
 const replay = document.querySelector(".replay");
 const quit = document.querySelector(".quit");
-
+const continuer = document.querySelector(".continuer");
 
 let gameOver = false;
 let foodX, foodY;
@@ -27,21 +28,53 @@ let fac = false;
 let moy = false;
 let dif = false;
 
+function fFacile() {
+  setIntervalId = setInterval(initGame, 200);
+  mode.style.visibility = "hidden";
+  fac = true;
+  console.log(facile);
+}
+function fMoyen() {
+  setIntervalId = setInterval(initGame, 150);
+  moy = true;
+  mode.style.visibility = "hidden";
+}
+function fDifficile() {
+  setIntervalId = setInterval(initGame, 100);
+  dif = true;
+  mode.style.visibility = "hidden";
+}
+function fImpossible() {
+  setIntervalId = setInterval(initGame, 125);
+  vitesse = 125;
+  cre = true;
+  mode.style.visibility = "hidden";
+}
+
+function reloadGame() {
+  gameOver = false;
+  foodX, foodY;
+  (snakeX = 5), (snakeY = 10);
+  snakeBody = [];
+  (velocityX = 0), (velocityY = 0);
+  setIntervalId;
+  score = 0;
+}
 
 const croque = () => {
-  const audio = new Audio()
-    audio.src = "./audio/s-croque.mp3";
-    audio.play();  
+  const audio = new Audio();
+  audio.src = "./audio/s-croque.mp3";
+  audio.play();
 };
 const mur = () => {
-  const audio = new Audio()
-    audio.src = "./audio/s-mur.mp3";
-    audio.play();  
+  const audio = new Audio();
+  audio.src = "./audio/s-mur.mp3";
+  audio.play();
 };
 const pop = () => {
-  const audio = new Audio()
-    audio.src = "./audio/pop.mp3";
-    audio.play();  
+  const audio = new Audio();
+  audio.src = "./audio/pop.mp3";
+  audio.play();
 };
 
 // Meilleur score stocké dans le local Storage
@@ -49,17 +82,17 @@ let highScore = localStorage.getItem("high-score") || 0;
 highScoreElement.innerText = `Meilleur Score: ${highScore}`;
 
 const crescendo = () => {
-  if(cre === true){
+  if (cre === true) {
     clearInterval(setIntervalId);
     setIntervalId = setInterval(initGame, vitesse);
     vitesse--;
-    console.log("cre actif")
-   }
+    console.log("cre actif");
+  }
 };
 
 const changeFoodPosition = () => {
-    foodX = Math.floor(Math.random() * 30) + 1;
-    foodY = Math.floor(Math.random() * 30) + 1;
+  foodX = Math.floor(Math.random() * 30) + 1;
+  foodY = Math.floor(Math.random() * 30) + 1;
 };
 
 const handleGameOver = () => {
@@ -69,18 +102,40 @@ const handleGameOver = () => {
   menuOver.style.visibility = "visible";
 };
 
-quit.addEventListener("click", ()=>{
+continuer.addEventListener("click", () => {
+  menu.style.visibility = "hidden";
+  mode.style.visibility = "visible";
+});
+quit.addEventListener("click", () => {
   location.reload();
 });
-replay.addEventListener("click", ()=>{
-  if(cre === true){
-    location.reload();
+replay.addEventListener("click", () => {
+  if (cre === true) {
     console.log("replay");
-  setIntervalId = setInterval(initGame, 125);
-  vitesse;
-  cre = true;
-  menuOver.style.visibility = "hidden";
- 
+    console.log("crescendo");
+    menuOver.style.visibility = "hidden";
+    fImpossible();
+    reloadGame();
+  } else if (fac === true) {
+    console.log("replay");
+    console.log("facile");
+    menuOver.style.visibility = "hidden";
+    fFacile();
+    reloadGame();
+  } else if (moy === true) {
+    console.log("replay");
+    console.log("moyen");
+    menuOver.style.visibility = "hidden";
+    fMoyen();
+    reloadGame();
+  } else if (dif === true) {
+    console.log("replay");
+    console.log("Difficile");
+    menuOver.style.visibility = "hidden";
+    fDifficile();
+    reloadGame();
+  } else {
+    console.log("replay marche pas");
   }
 });
 
@@ -116,16 +171,16 @@ const initGame = () => {
 
   // Quand le serpent mange le fruit
   if (snakeX === foodX && snakeY === foodY) {
-    snakeBody.push([foodX,foodY]);
+    snakeBody.push([foodX, foodY]);
     changeFoodPosition();
-    pop();   
+    pop();
     score++;
     crescendo();
     console.log(vitesse);
     highScore = score >= highScore ? score : highScore;
     localStorage.setItem("high-score", highScore);
     scoreElement.innerText = `Score: ${score}`;
-    highScoreElement.innerText = `Meilleur Score: ${highScore}`; 
+    highScoreElement.innerText = `Meilleur Score: ${highScore}`;
   }
   // synchronise la div avec la tête du serpent
   for (let i = snakeBody.length - 1; i > 0; i--) {
@@ -142,7 +197,6 @@ const initGame = () => {
   if (snakeX <= 0 || snakeX > 30 || snakeY <= 0 || snakeY > 30) {
     mur();
     gameOver = true;
-
   }
 
   //ajoute une div quand le serpert mange un fruit
@@ -165,28 +219,12 @@ const initGame = () => {
 changeFoodPosition();
 
 // setIntervalId = setInterval(initGame, 300);
-facile.addEventListener("click", () => {
-  setIntervalId = setInterval(initGame, 200);
-  vitesse = 200;
-  menu.style.visibility = "hidden";
-  console.log(facile);
-});
-moyen.addEventListener("click", () => {
-  setIntervalId = setInterval(initGame, 150);
-  vitesse = 150;
-  menu.style.visibility = "hidden";
-});
 
-difficile.addEventListener("click", () => {
-  setIntervalId = setInterval(initGame, 100);
-  vitesse = 100;
-  menu.style.visibility = "hidden";
-});
-impossible.addEventListener("click", () => {
-  setIntervalId = setInterval(initGame, 125);
-  vitesse;
-  cre = true;
-  menu.style.visibility = "hidden";
-});
+// Mode de jeu
+facile.addEventListener("click", fFacile);
+moyen.addEventListener("click", fMoyen);
+difficile.addEventListener("click", fDifficile);
+impossible.addEventListener("click", fImpossible);
 
+// commande
 document.addEventListener("keydown", changeDirection);

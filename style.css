@@ -68,6 +68,11 @@ div.play-menu ul.wrap-liste {
   margin: 20px;
   list-style: none;
 }
+div.play-mode ul.wrap-liste {
+  display: flex;
+  margin: 20px;
+  list-style: none;
+}
 ul.wrap-liste li {
   user-select: none;
   padding: 2px 5px;
