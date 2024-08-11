@@ -1,6 +1,9 @@
 const playBoard = document.querySelector(".play-board");
+const wrapper = document.querySelector(".wrapper");
+const shake = document.querySelector(".shake");
 const scoreElement = document.querySelector(".score");
 const highScoreElement = document.querySelector(".high-score");
+const modeElement = document.querySelector(".mode-jeu");
 const controls = document.querySelectorAll(".controls .touch");
 const facile = document.querySelector(".facile");
 const moyen = document.querySelector(".moyen");
@@ -12,6 +15,8 @@ const menuOver = document.querySelector(".game-over");
 const replay = document.querySelector(".replay");
 const quit = document.querySelector(".quit");
 const continuer = document.querySelector(".continuer");
+const modeButton = document.querySelector(".mode-btn");
+const snake = document.querySelector("#snake-img");
 
 let gameOver = false;
 let foodX, foodY;
@@ -27,27 +32,75 @@ let cre = false;
 let fac = false;
 let moy = false;
 let dif = false;
+let countLvl = 1;
+
+const btnRing = () => {
+  const audio = new Audio();
+  audio.src = "./audio/s-btn.mp3";
+  audio.play();
+};
+const serpentRing0 = () => {
+  const audio = new Audio();
+  audio.src = "./audio/s-serpent.mp3";
+  audio.play();
+};
+const serpentRing1 = () => {
+  const audio = new Audio();
+  audio.src = "./audio/s-serpent1.mp3";
+  audio.play();
+};
+const croque = () => {
+  const audio = new Audio();
+  audio.src = "./audio/s-croque.mp3";
+  audio.play();
+};
+const mur = () => {
+  const audio = new Audio();
+  audio.src = "./audio/s-boom.mp3";
+  audio.play();
+};
+const pop = () => {
+  const audio = new Audio();
+  audio.src = "./audio/pop.mp3";
+  audio.play();
+};
 
 function fFacile() {
   setIntervalId = setInterval(initGame, 200);
   mode.style.visibility = "hidden";
   fac = true;
+  cre = false;
+  moy = false;
+  dif = false;
+  modeElement.innerText = `Mode: Facile `;
   console.log(facile);
 }
 function fMoyen() {
   setIntervalId = setInterval(initGame, 150);
   moy = true;
+  cre = false;
+  fac = false;
+  dif = false;
+  modeElement.innerText = `Mode: Moyen `;
   mode.style.visibility = "hidden";
 }
 function fDifficile() {
   setIntervalId = setInterval(initGame, 100);
   dif = true;
+  cre = false;
+  fac = false;
+  moy = false;
+  modeElement.innerText = `Mode: Difficile `;
   mode.style.visibility = "hidden";
 }
 function fImpossible() {
   setIntervalId = setInterval(initGame, 125);
   vitesse = 125;
   cre = true;
+  fac = false;
+  moy = false;
+  dif = false;
+  modeElement.innerText = `Mode: Crescendo `;
   mode.style.visibility = "hidden";
 }
 
@@ -59,23 +112,8 @@ function reloadGame() {
   (velocityX = 0), (velocityY = 0);
   setIntervalId;
   score = 0;
+  countLvl = 1;
 }
-
-const croque = () => {
-  const audio = new Audio();
-  audio.src = "./audio/s-croque.mp3";
-  audio.play();
-};
-const mur = () => {
-  const audio = new Audio();
-  audio.src = "./audio/s-mur.mp3";
-  audio.play();
-};
-const pop = () => {
-  const audio = new Audio();
-  audio.src = "./audio/pop.mp3";
-  audio.play();
-};
 
 // Meilleur score stocké dans le local Storage
 let highScore = localStorage.getItem("high-score") || 0;
@@ -86,9 +124,36 @@ const crescendo = () => {
     clearInterval(setIntervalId);
     setIntervalId = setInterval(initGame, vitesse);
     vitesse--;
-    console.log("cre actif");
+    creNiveau();
+    countLvl++;
+    console.log(vitesse);
   }
 };
+function creNiveau() {
+  if (countLvl < 5) {
+    modeElement.innerText = `Mode: Crescendo | Niveau 1`;
+  } else if (countLvl < 11) {
+    modeElement.innerText = `Mode: Crescendo | Niveau 2`;
+  } else if (countLvl < 18) {
+    modeElement.innerText = `Mode: Crescendo | Niveau 3`;
+  } else if (countLvl < 25) {
+    modeElement.innerText = `Mode: Crescendo | Niveau 4`;
+  } else if (countLvl < 34) {
+    modeElement.innerText = `Mode: Crescendo | Niveau 5`;
+  } else if (countLvl < 44) {
+    modeElement.innerText = `Mode: Crescendo | Niveau 6`;
+  } else if (countLvl < 55) {
+    modeElement.innerText = `Mode: Crescendo | Niveau 7`;
+  } else if (countLvl < 67) {
+    modeElement.innerText = `Mode: Crescendo | Niveau 8`;
+  } else if (countLvl < 80) {
+    modeElement.innerText = `Mode: Crescendo | Niveau 9`;
+  } else if (countLvl < 93) {
+    modeElement.innerText = `Mode: Crescendo | Niveau 10`;
+  } else if (countLvl < 100) {
+    modeElement.innerText = `Mode: Crescendo | Niveau InSane`;
+  }
+}
 
 const changeFoodPosition = () => {
   foodX = Math.floor(Math.random() * 30) + 1;
@@ -100,44 +165,81 @@ const handleGameOver = () => {
   //message de fin de jeu et recharge la page
   clearInterval(setIntervalId);
   menuOver.style.visibility = "visible";
+  wrapper.classList.remove("shake");
+  snake.classList.add("active-snake");
+
+  serpentRing1();
 };
 
 continuer.addEventListener("click", () => {
+  serpentRing0();
   menu.style.visibility = "hidden";
   mode.style.visibility = "visible";
 });
+modeButton.addEventListener("click", () => {
+  btnRing();
+  menuOver.style.visibility = "hidden";
+  mode.style.visibility = "visible";
+  scoreElement.innerText = `Score: 0`;
+  snake.classList.remove("active-snake");
+  reloadGame();
+});
 quit.addEventListener("click", () => {
+  btnRing();
   location.reload();
 });
 replay.addEventListener("click", () => {
+  snake.classList.remove("active-snake");
+  btnRing();
   if (cre === true) {
     console.log("replay");
     console.log("crescendo");
     menuOver.style.visibility = "hidden";
-    fImpossible();
+    scoreElement.innerText = `Score: 0`;
+    modeElement.innerText = `Mode: Crescendo `;
     reloadGame();
+    fImpossible();
   } else if (fac === true) {
     console.log("replay");
     console.log("facile");
     menuOver.style.visibility = "hidden";
+    scoreElement.innerText = `Score: 0`;
+    modeElement.innerText = `Mode: Facile `;
     fFacile();
     reloadGame();
   } else if (moy === true) {
     console.log("replay");
     console.log("moyen");
     menuOver.style.visibility = "hidden";
+    scoreElement.innerText = `Score: 0`;
+    modeElement.innerText = `Moyen`;
     fMoyen();
     reloadGame();
   } else if (dif === true) {
     console.log("replay");
     console.log("Difficile");
     menuOver.style.visibility = "hidden";
+    scoreElement.innerText = `Score: 0`;
+    modeElement.innerText = `Mode: Difficile `;
     fDifficile();
     reloadGame();
   } else {
     console.log("replay marche pas");
   }
 });
+function modeSelect() {
+  if (cre === true) {
+    modeElement.innerText = `Mode: Crescendo `;
+  } else if (fac === true) {
+    modeElement.innerText = `Mode: Facile `;
+  } else if (moy === true) {
+    modeElement.innerText = `Mode: Moyen `;
+  } else if (dif === true) {
+    modeElement.innerText = `Mode: Difficile`;
+  } else {
+    console.log("mode ne marche pas");
+  }
+}
 
 const changeDirection = (e) => {
   // associe touche clavier direction serpent && evite qu'on puisse revenir en arriere
@@ -195,7 +297,10 @@ const initGame = () => {
 
   // perdu si le serpent touche le mur
   if (snakeX <= 0 || snakeX > 30 || snakeY <= 0 || snakeY > 30) {
+    wrapper.classList.add("shake");
+    console.log(wrapper);
     mur();
+
     gameOver = true;
   }
 

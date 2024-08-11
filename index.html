@@ -15,14 +15,14 @@
         <div class="body">
           <div class="play-menu">
             <h2 class="titre-menu">Bienvenue sur le jeu AsPeach !</h2>
-            <p>
+            <p style="margin: 30px">
               <u>But du jeu:</u>
               <br />
               Tu es un serpent (
               <span style="color: forestgreen">■</span>
-              )et tu dois manger des fruits (
+              ) et tu dois manger des fruits (
               <span style="color: #fa1">■</span>
-              )pour grandir le plus possible.<br />
+              ) pour grandir le plus possible.<br />
             </p>
             <span style="font-size: 14px"
               >P.S: Attention au mur et ne te mords pas !
@@ -51,17 +51,17 @@
             <h3 class="titre-over">Game Over</h3>
             <ul class="wrap-liste">
               <li class="replay">Recommencer</li>
-              <li class="replay">Changer le mode</li>
+              <li class="mode-btn">Choix du Mode</li>
               <li class="quit">Menu Principal</li>
             </ul>
-            <img src="./image/ipeach.svg" alt="pèche" />
-            <img src="./image/isnake.svg" alt="serpent" />
+            <img id="peach-img" src="./image/ipeach.svg" alt="pèche" />
+            <img id="snake-img" src="./image/isnake.svg" alt="serpent" />
           </div>
           <div class="wrapper">
             <h1>/* AsPeach */</h1>
             <div class="game-details">
               <span class="score">Score: 0</span>
-              <span class="mode-jeu">mode: 0</span>
+              <span class="mode-jeu">Mode: Aucun</span>
               <span class="high-score"></span>
             </div>
             <div class="play-board"></div>

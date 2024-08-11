@@ -9,13 +9,68 @@
 }
 html,
 body {
+  background-color: lightgreen;
   height: 100%;
- background-image: url(./image/jungle.jpg);
+  background-image: url(./image/jungle.jpg);
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@keyframes shake {
+  0% {  transform: translate(2px, 1px) rotate(0deg); } 
+  10% {  transform: translate(-1px, -2px) rotate(-1deg); }
+  20% {  transform: translate(-3px, 0px) rotate(1deg); }
+  30% {  transform: translate(0px, 2px) rotate(0deg); }
+  40% {  transform: translate(1px, -1px) rotate(1deg); }
+  50% {  transform: translate(-1px, 2px) rotate(-1deg); }
+  60% {  transform: translate(-3px, 1px) rotate(0deg); }
+  70% {  transform: translate(2px, 1px) rotate(-1deg); }
+  80% {  transform: translate(-1px, -1px) rotate(1deg); }
+  90% {  transform: translate(2px, 2px) rotate(0deg); }
+  100% {  transform: translate(1px, -2px) rotate(-1deg); }
+}
+@keyframes serpent {
+ 0% {transform: translate(14%, -36%) scale(0.04);}
+ 10% {transform: translate(14%, -34%) scale(0.05);}
+ 20% {transform: translate(14%, -32%) scale(0.06);}
+ 30% {transform: translate(13%, -30%) scale(0.07);}
+ 40% {transform: translate(12%, -28%) scale(0.10);}
+ 50% {transform: translate(11%, -26%) scale(0.13);}
+ 60% {transform: translate(11%, -25%) scale(0.16);}
+ 70% {transform: translate(11%, -24%) scale(0.19);}
+ 80% {transform: translate(11%, -23%) scale(0.22);}
+ 90% {transform: translate(11%, -22%) scale(0.25);}
+ 100% { transform: translate(11%, -20%) scale(0.28);}
+
+
+}
+.shake{
+   animation-name: shake;
+   animation-duration: 0.5s;
+   transform-origin:50% 50%;
+   animation-iteration-count:infinite;
+}
+.active-snake{
+   animation-name: serpent;
+   animation-duration: 0.5s;
+   transform-origin:50% 50%;
+   animation-iteration-count:1;
+}
+/* #peach-img{
+  filter: drop-shadow(2px 1px 2px black);
+  inset: 370px 220px;
+  position: fixed;
+  width: 117px
+} */
+#snake-img {
+  filter: drop-shadow(2px 1px 2px black);
+  position: fixed;
+  transform: translate(11%, -20%) scale(0.28);
 }
 /* 2 */
 .play-mode {
@@ -111,12 +166,16 @@ ul.wrap-liste li:active {
   position: absolute;
   margin: 7px;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   overflow: hidden;
   width: 66vmin;
   height: 62vmin;
   top: 115px;
+  background-image: url(./image/ipeach.svg);
+  background-size: 1778px;
+  background-position-x: -741px;
+  background-position-y: -16px;
   visibility: hidden;
 }
 .game-over .titre-over {
@@ -129,8 +188,12 @@ div.game-over ul {
   display: flex;
   margin: 5px;
   list-style: none;
+  flex-wrap: wrap;
+justify-content: space-around;
+  align-items: center;
 }
 div.game-over ul li {
+  z-index: 1;
   margin-top: 20px;
   margin-bottom: 0px;
   width: auto;
@@ -142,8 +205,19 @@ div.game-over ul li:first-child {
 }
 div.game-over ul li:first-child:hover {
   color: green;
-
 }
+div.game-over ul li:nth-child(2) {
+  color: darkgreen;
+  background-color: lightgreen;
+  font-weight: 700;
+}
+div.game-over ul li:last-child {
+  margin: 45px;
+}
+div.game-over ul li:nth-child(2):hover {
+  color: green;
+}
+
 
 .wrapper {
   margin: 7px;
