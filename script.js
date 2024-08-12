@@ -67,6 +67,7 @@ const pop = () => {
 
 function fFacile() {
   setIntervalId = setInterval(initGame, 200);
+  vitesse = 200;
   mode.style.visibility = "hidden";
   fac = true;
   cre = false;
@@ -77,6 +78,7 @@ function fFacile() {
 }
 function fMoyen() {
   setIntervalId = setInterval(initGame, 150);
+  vitesse = 150;
   moy = true;
   cre = false;
   fac = false;
@@ -86,6 +88,7 @@ function fMoyen() {
 }
 function fDifficile() {
   setIntervalId = setInterval(initGame, 100);
+  vitesse = 100;
   dif = true;
   cre = false;
   fac = false;
