@@ -19,6 +19,7 @@ const modeButton = document.querySelector(".mode-btn");
 const snake = document.querySelector("#snake-img");
 const guide = document.querySelector(".guide");
 
+
 let gameOver = false;
 let foodX, foodY;
 let snakeX = 5,
@@ -271,6 +272,8 @@ controls.forEach((key) => {
     })
   );
 });
+
+
 
 const initGame = () => {
   if (gameOver) return handleGameOver();
