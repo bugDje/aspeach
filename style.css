@@ -9,10 +9,10 @@
 }
 html,
 body {
-  background-color: lightgreen;
+  background-color: forestgreen;
   height: 100%;
   background-image: url(./image/jungle.jpg);
-  background-size: auto;
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -21,6 +21,7 @@ body {
   align-items: center;
   justify-content: center;
 }
+
 @keyframes shake {
   0% {  transform: translate(2px, 1px) rotate(0deg); } 
   10% {  transform: translate(-1px, -2px) rotate(-1deg); }
@@ -133,7 +134,7 @@ ul.wrap-liste li {
   justify-content: space-around;
   background-color: darkgreen;
   color: lightgreen;
-  width: 80px;
+  width: 100px;
   height: auto;
   letter-spacing: 1px;
 }
@@ -268,8 +269,22 @@ div.game-over ul li:nth-child(2):hover {
 }
 .controls {
   display: none;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2,1fr);
   justify-items: center;
+}
+img.touch:nth-child(4) { 
+  margin-top: -15px;
+ grid-row: 2;
+ grid-column: 2;
+}
+img.touch:nth-child(1) { 
+  margin: 40px 0px 0px 51px
+
+}
+img.touch:nth-child(3) { 
+  margin: 40px 51px 0px 0px
+
 }
 img.touch {
   margin: 10px 0;
@@ -308,21 +323,22 @@ img.touch:active {
 
 @media screen and (max-width: 800px){
   .wrapper {
-    max-width: 360px;
-    min-width: 309px;
-    min-height: 495px;
-    max-height: 287px;
+    max-width: 500px;
+    min-width: 360px;
+    min-height: 590px;
+    max-height: 287px
 }
   .play-menu,
   .play-mode,
   .game-over {
-    max-width: 360px;
+    max-width: 361px;
     min-width: 304px;
-    min-height: 376px;
-    max-height: 285px
+    min-height: 470px;
+    max-height: 285px;
 }
   .controls{
     display: grid;
+    margin: -5px 0 -48px 0;
   }
   .game-details span{
     border-right: 2px double forestgreen;
