@@ -17,6 +17,7 @@ const quit = document.querySelector(".quit");
 const continuer = document.querySelector(".continuer");
 const modeButton = document.querySelector(".mode-btn");
 const snake = document.querySelector("#snake-img");
+const guide = document.querySelector(".guide");
 
 let gameOver = false;
 let foodX, foodY;
@@ -245,6 +246,7 @@ function modeSelect() {
 }
 
 const changeDirection = (e) => {
+guide.style.display = "none";
   // associe touche clavier direction serpent && evite qu'on puisse revenir en arriere
   if (e.key === "ArrowUp" && velocityY != 1) {
     velocityX = 0;

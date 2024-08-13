@@ -63,6 +63,7 @@ body {
 }
 /* 2 */
 .play-mode {
+  z-index: 1;
   padding: 7px;
   color: darkgreen;
   font-weight: 500;
@@ -83,6 +84,7 @@ body {
 }
 /* 1 */
 .play-menu {
+  z-index: 1;
   padding: 7px;
   color: darkgreen;
   font-weight: 500;
@@ -148,6 +150,7 @@ ul.wrap-liste li:active {
 }
 /* 3 */
 .game-over {
+  z-index: 1;
   padding: 7px;
   color: darkgreen;
   font-weight: 500;
@@ -256,6 +259,13 @@ div.game-over ul li:nth-child(2):hover {
 .play-board .head {
   background-color: forestgreen;
 }
+.guide{
+  z-index: 0;
+  transform: translate(50%, 50%);
+  top: 50%;
+  right: 50%;
+  position: absolute;
+}
 .controls {
   display: none;
   grid-template-columns: repeat(4, 1fr);
@@ -295,7 +305,49 @@ img.touch:active {
   text-align: center;
 }
 
-@media (min-width: 290px) and (max-width: 319px)  {
+
+@media screen and (max-width: 800px){
+  .wrapper {
+    max-width: 360px;
+    min-width: 309px;
+    min-height: 495px;
+    max-height: 287px;
+}
+  .play-menu,
+  .play-mode,
+  .game-over {
+    max-width: 360px;
+    min-width: 304px;
+    min-height: 376px;
+    max-height: 285px
+}
+  .controls{
+    display: grid;
+  }
+  .game-details span{
+    border-right: 2px double forestgreen;
+    padding-right: 3px;
+    font-size: 12px;
+  }
+  .guide{
+    display:none;
+  }
+#snake-img {
+  transform: translate(6%, -16%) scale(0.28);
+}
+@keyframes serpent {
+  0% { transform: translate(6%, -33%) scale(0.04);}
+  100% { transform: translate(6%, -16%) scale(0.28);}
+ }
+}
+@media screen and (min-width: 320px) and (max-width: 480px){
+
+.game-details{
+  flex-direction: column;
+}
+}
+
+/* @media (min-width: 290px) {
   .wrapper {
     width: 96vmin;
     height: 155vmin;
@@ -335,10 +387,7 @@ img.touch:active {
   position: fixed;
   transform: translate(1%, -15%) scale(0.28);
 }
-@keyframes serpent {
-  0% { transform: translate(1%, -33%) scale(0.04);}
-  100% { transform: translate(1%, -15%) scale(0.28);}
- }
+
 
  .controls {
   display: grid;
@@ -368,15 +417,31 @@ img.touch {
   .dje-footer span {
     color: #fa1;
   }
-}
+  .wrapper {
+    width: 96vmin;
+    height: calc(3*(4.5vmin + 26.5vmax));
+  }
+
+  .play-menu, .game-over, .play-mode {
+    height: calc(3*(4.5vmin + 19.9vmax));
+    top: 103px;
+}}
 
 @media (min-width: 481px) {
   .dje-footer span {
     color: lightcoral;
   }
+  .wrapper {
+    width: 96vmin;
+    height: calc(3*(13vh + 17.5vh));
 }
+.play-menu, .game-over, .play-mode {
+  width: 90vmin;
+  height: calc(3*(8.7vh + 14.4vh));
+  top: 116px;
+}}
 
-@media (min-width: 641px) {
+@media (max-width: 641px) {
   .dje-footer span {
     color: lightgreen;
   }
@@ -384,12 +449,33 @@ img.touch {
 
 @media (min-width: 961px) {
   .dje-footer span {
-    color: greenyellow;
+    color: greenyellow;    
   }
+  .wrapper {
+    width: 78vmin;
+    height: 90vmin;
 }
+.play-menu, .game-over, .play-mode {
+  width: 66vmin;
+  height: 62vmin;
+  top: 139px;
+}
+.controls {
+  display: none;
+}
+.game-details {
+  color: darkgreen;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 0px 15px 5px;
+  display: flex;
+  justify-content: space-between;
+}
+}
+
 
 @media (min-width: 1025px) {
   .dje-footer span {
     color: forestgreen;
   }
-}
+} */
