@@ -16,6 +16,41 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
+.loading{
+  z-index: 99;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: forestgreen;
+  transition: 0.45s;
+}
+.loading-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: whitesmoke;
+  font-size: 7vw;
+  text-shadow: 2px 2px 5px rgba(0,0,0, 0.3),
+  5px 5px 70 px rgba(255,255,255, 0.5);
+
+}
+.number {
+  width: 100%;
+  text-align: center;
+}
+#bar{
+width: 300px;
+height: 12px;
+border: 1px solid whitesmoke;
+box-shadow: 2px 2px 5px rgba(0,0,0, 0.3),
+  5px 5px 70 px rgba(255,255,255, 0.5);
+}
+#progress{
+  background-color: whitesmoke;
+  width: 0%;
+  height: 100%;
+}
 .body {
   display: flex;
   align-items: center;
@@ -37,7 +72,7 @@ body {
 }
 @keyframes serpent {
  0% {transform: translate(14%, -36%) scale(0.04);}
- 100% { transform: translate(11%, -20%) scale(0.28);}
+ 100% { transform: translate(13%, -15%) scale(0.28);}
 }
 .shake{
    animation-name: shake;
@@ -58,9 +93,10 @@ body {
   width: 117px
 } */
 #snake-img {
+  
   filter: drop-shadow(2px 1px 2px black);
   position: fixed;
-  transform: translate(11%, -20%) scale(0.28);
+  transform: translate(13%, -15%) scale(0.28);
 }
 /* 2 */
 .play-mode {
@@ -124,6 +160,7 @@ div.play-mode ul.wrap-liste {
   list-style: none;
 }
 ul.wrap-liste li {
+  font-size: 1.7em;
   user-select: none;
   padding: 2px 5px;
   cursor: pointer;
@@ -134,7 +171,7 @@ ul.wrap-liste li {
   justify-content: space-around;
   background-color: darkgreen;
   color: lightgreen;
-  width: 85px;
+  width: 100%;
   height: auto;
   letter-spacing: 1px;
 }
@@ -143,7 +180,6 @@ ul.wrap-liste li:hover {
 }
 ul.wrap-liste li:active {
   box-shadow: inset 1px 1px 2px black;
-  font-size: 15px;
 }
 .mode {
   margin-top: 10px;
@@ -337,18 +373,14 @@ img.touch:active {
     background-image: none 
   }
   .wrapper {
-    max-width: 500px;
-    min-width: 309px;
-    min-height: 492px;
-    max-height: 287px
+    width: 90%;
+    height: 90vh;
 }
   .play-menu,
   .play-mode,
   .game-over {
-    max-width: 361px;
-    min-width: 304px;
-    min-height: 375px;
-    max-height: 285px;
+    width: 90%;
+    height: 80vh
 }
   .controls{
     display: grid;
@@ -361,18 +393,33 @@ img.touch:active {
   }
   .guide{
     display:none;
+  } 
+  
+  ul.wrap-liste li {
+    font-size: calc(3 * (0.5vmin + 0.7vmax));
   }
 #snake-img {
-  transform: translate(6%, -16%) scale(0.28);
+  transform: translate(3%, -5%) scale(0.4);
 }
 @keyframes serpent {
   0% { transform: translate(6%, -33%) scale(0.04);}
-  100% { transform: translate(6%, -16%) scale(0.28);}
+  100% { transform: translate(3%, -5%) scale(0.4);}
  }
 }
-@media screen and (min-width: 320px) and (max-width: 480px){
 
+@media screen and (min-width: 320px) and (max-width: 480px){
+  .wrapper {
+    width: 90%;
+    height: 70vh;
+}
+  .play-menu,
+  .play-mode,
+  .game-over {
+    width: 90%;
+    height: 60vh
+}
 .game-details{
   flex-direction: column;
 }
+
 };
