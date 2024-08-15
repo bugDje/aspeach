@@ -99,8 +99,8 @@ const pop = () => {
 };
 
 function fFacile() {
-  setIntervalId = setInterval(initGame, 200);
-  vitesse = 200;
+  setIntervalId = setInterval(initGame, 300);
+  vitesse = 300;
   mode.style.visibility = "hidden";
   fac = true;
   cre = false;
@@ -110,8 +110,8 @@ function fFacile() {
   console.log(facile);
 }
 function fMoyen() {
-  setIntervalId = setInterval(initGame, 150);
-  vitesse = 150;
+  setIntervalId = setInterval(initGame, 200);
+  vitesse = 200;
   moy = true;
   cre = false;
   fac = false;
@@ -130,8 +130,8 @@ function fDifficile() {
   mode.style.visibility = "hidden";
 }
 function fImpossible() {
-  setIntervalId = setInterval(initGame, 125);
-  vitesse = 125;
+  setIntervalId = setInterval(initGame, 200);
+  vitesse = 200;
   cre = true;
   fac = false;
   moy = false;
@@ -192,8 +192,8 @@ function creNiveau() {
 }
 
 const changeFoodPosition = () => {
-  foodX = Math.floor(Math.random() * 30) + 1;
-  foodY = Math.floor(Math.random() * 30) + 1;
+  foodX = Math.floor(Math.random() * 30);
+  foodY = Math.floor(Math.random() * 30);
 };
 
 const handleGameOver = () => {

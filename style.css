@@ -160,7 +160,7 @@ div.play-mode ul.wrap-liste {
   list-style: none;
 }
 ul.wrap-liste li {
-  font-size: 1.7em;
+  font-size: 1.4em;
   user-select: none;
   padding: 2px 5px;
   cursor: pointer;
@@ -323,13 +323,13 @@ img.touch:nth-child(2) {
 img.touch:nth-child(1) { 
   height: 70px;
   margin: 20px 0px 0px 3px;
-  width: 98px;
+  width: 100%;
 
 }
 img.touch:nth-child(3) { 
   height: 70px;
   margin: 20px 3px 0px 0px;
-  width: 98px;
+  width: 100%;
 
 }
 img.touch {
@@ -389,7 +389,10 @@ img.touch:active {
   .game-details span{
     border-right: 2px double forestgreen;
     padding-right: 3px;
-    font-size: 12px;
+    font-size: 25px;
+  }
+  .mode {
+    font-size: 25px;
   }
   .guide{
     display:none;
@@ -410,16 +413,26 @@ img.touch:active {
 @media screen and (min-width: 320px) and (max-width: 480px){
   .wrapper {
     width: 90%;
-    height: 70vh;
+    height: 85vh;
 }
   .play-menu,
   .play-mode,
   .game-over {
     width: 90%;
-    height: 60vh
+    height: 70vh
 }
 .game-details{
-  flex-direction: column;
+  flex-direction: column;  
 }
+.game-details span {
+  font-size: 15px;
+}
+#snake-img {
+  transform: translate(3%, -15%) scale(0.4);
+}
+@keyframes serpent {
+  0% { transform: translate(6%, -33%) scale(0.04);}
+  100% { transform: translate(3%, -15%) scale(0.4);}
+ }
 
 };
