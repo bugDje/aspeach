@@ -37,20 +37,21 @@ let dif = false;
 let countLvl = 1;
 let count = 0;
 let loaded = false;
+let toucheMur = true;
 
 // loading
-const interval = setInterval(() =>{
-if (count < 101) {
-  loadCount.textContent = count++;
-  progress.style.width = count++ + "%"
-} else  if(loaded){
-  loadingDiv.style.opacity = 0;
-  clearInterval(interval);
+const interval = setInterval(() => {
+  if (count < 101) {
+    loadCount.textContent = count++;
+    progress.style.width = count++ + "%";
+  } else if (loaded) {
+    loadingDiv.style.opacity = 0;
+    clearInterval(interval);
 
-  setTimeout(() => {
-    loadingDiv.style.display = "none";
+    setTimeout(() => {
+      loadingDiv.style.display = "none";
     }, 450);
-}
+  }
 }, 10);
 
 window.addEventListener("load", () => {
@@ -64,8 +65,9 @@ window.addEventListener("load", () => {
 
   setTimeout(() => {
     loadingDiv.style.display = "none";
-    }, 450);
-})
+  }, 450);
+});
+  
 
 const btnRing = () => {
   const audio = new Audio();
@@ -106,8 +108,10 @@ function fFacile() {
   cre = false;
   moy = false;
   dif = false;
+  toucheMur = true;
   modeElement.innerText = `Mode: Facile `;
   console.log(facile);
+  console.log(toucheMur);
 }
 function fMoyen() {
   setIntervalId = setInterval(initGame, 200);
@@ -116,6 +120,7 @@ function fMoyen() {
   cre = false;
   fac = false;
   dif = false;
+  toucheMur = true;
   modeElement.innerText = `Mode: Moyen `;
   mode.style.visibility = "hidden";
 }
@@ -126,16 +131,18 @@ function fDifficile() {
   cre = false;
   fac = false;
   moy = false;
+  toucheMur = true;
   modeElement.innerText = `Mode: Difficile `;
   mode.style.visibility = "hidden";
 }
 function fImpossible() {
-  setIntervalId = setInterval(initGame, 200);
-  vitesse = 200;
+  setIntervalId = setInterval(initGame, 150);
+  vitesse = 150;
   cre = true;
   fac = false;
   moy = false;
   dif = false;
+  toucheMur = false;
   modeElement.innerText = `Mode: Crescendo `;
   mode.style.visibility = "hidden";
 }
@@ -192,8 +199,8 @@ function creNiveau() {
 }
 
 const changeFoodPosition = () => {
-  foodX = Math.floor(Math.random() * 30);
-  foodY = Math.floor(Math.random() * 30);
+  foodX = Math.floor(Math.random() * 30 + 1);
+  foodY = Math.floor(Math.random() * 30 + 1);
 };
 
 const handleGameOver = () => {
@@ -272,13 +279,11 @@ function modeSelect() {
     modeElement.innerText = `Mode: Moyen `;
   } else if (dif === true) {
     modeElement.innerText = `Mode: Difficile`;
-  } else {
-    console.log("mode ne marche pas");
   }
 }
 
 const changeDirection = (e) => {
-guide.style.display = "none";
+  guide.style.display = "none";
   // associe touche clavier direction serpent && evite qu'on puisse revenir en arriere
   if (e.key === "ArrowUp" && velocityY != 1) {
     velocityX = 0;
@@ -303,8 +308,6 @@ controls.forEach((key) => {
     })
   );
 });
-
-
 
 const initGame = () => {
   if (gameOver) return handleGameOver();
@@ -335,12 +338,24 @@ const initGame = () => {
   snakeY += velocityY;
 
   // perdu si le serpent touche le mur
-  if (snakeX <= 0 || snakeX > 30 || snakeY <= 0 || snakeY > 30) {
-    wrapper.classList.add("shake");
-    console.log(wrapper);
-    mur();
-
-    gameOver = true;
+  if (toucheMur) {
+    if (snakeX <= 0 || snakeX > 30 || snakeY <= 0 || snakeY > 30) {
+      wrapper.classList.add("shake");
+      console.log(wrapper);
+      mur();
+      gameOver = true;
+    }
+  } else {
+    // Variante si le serpent touche le mur
+    if (snakeX <= 0) {
+      snakeX = 30;
+    } else if (snakeX > 30) {
+      snakeX = 1;
+    } else if (snakeY <= 0) {
+      snakeY = 30;
+    } else if (snakeY > 30) {
+      snakeY = 1;
+    }
   }
 
   //ajoute une div quand le serpert mange un fruit

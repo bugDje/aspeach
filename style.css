@@ -389,7 +389,7 @@ img.touch:active {
   .game-details span{
     border-right: 2px double forestgreen;
     padding-right: 3px;
-    font-size: 25px;
+    font-size: 20px;
   }
   .mode {
     font-size: 25px;
@@ -425,7 +425,7 @@ img.touch:active {
   flex-direction: column;  
 }
 .game-details span {
-  font-size: 15px;
+  font-size: 13.5px;
 }
 #snake-img {
   transform: translate(3%, -15%) scale(0.4);
