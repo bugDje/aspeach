@@ -285,14 +285,14 @@ function modeSelect() {
     modeElement.innerText = `Mode: Difficile`;
   }
 }
-document.addEventListener("click",touchTactile);
+document.addEventListener("touchmove",touchTactile);
 function touchTactile(eventTac){
   eventTac.preventDefault();
-  playBoard.addEventListener("pointerdown",(e) => {
+  playBoard.addEventListener("touchstart",(e) => {
     md = e.clientX;
     mdY = e.clientY;
     });
-  playBoard.addEventListener("pointerup",(e) => {
+  playBoard.addEventListener("touchend",(e) => {
     mu = e.clientX;
     muY = e.clientY;
       });  

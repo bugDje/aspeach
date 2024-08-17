@@ -359,6 +359,9 @@ img.touch:active {
   height: 20px;
 }
 .dje-footer {
+  padding: 0 5px;
+  display: flex;
+  justify-content: space-between;
   background-color: forestgreen;
   color: #fcfcfc;
   font-size: 12px;
