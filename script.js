@@ -38,6 +38,7 @@ let countLvl = 1;
 let count = 0;
 let loaded = false;
 let toucheMur = true;
+let md, mu, muY, mdY;
 
 
 
@@ -284,21 +285,17 @@ function modeSelect() {
     modeElement.innerText = `Mode: Difficile`;
   }
 }
-playBoard.addEventListener("click", touchTactile, false);
-
-function touchTactile(){
-  playBoard.addEventListener("mousedown",(e) => {
-    md = e.clientX
+document.addEventListener("click",touchTactile);
+function touchTactile(eventTac){
+  eventTac.preventDefault();
+  playBoard.addEventListener("pointerdown",(e) => {
+    md = e.clientX;
+    mdY = e.clientY;
     });
-  playBoard.addEventListener("mouseup",(e) => {
-    mu = e.clientX  
-    });
-  playBoard.addEventListener("mousedown",(e) => {
-    mdY = e.clientY
-    });
-  playBoard.addEventListener("mouseup",(e) => {
-    muY = e.clientY
-    });
+  playBoard.addEventListener("pointerup",(e) => {
+    mu = e.clientX;
+    muY = e.clientY;
+      });  
 
   if(md > mu && velocityX != 1){
     velocityX = -1;
