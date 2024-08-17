@@ -39,6 +39,8 @@ let count = 0;
 let loaded = false;
 let toucheMur = true;
 
+
+
 // loading
 const interval = setInterval(() => {
   if (count < 101) {
@@ -68,6 +70,7 @@ window.addEventListener("load", () => {
   }, 450);
 });
   
+
 
 const btnRing = () => {
   const audio = new Audio();
@@ -281,6 +284,40 @@ function modeSelect() {
     modeElement.innerText = `Mode: Difficile`;
   }
 }
+playBoard.addEventListener("click", touchTactile, false);
+
+function touchTactile(){
+  playBoard.addEventListener("mousedown",(e) => {
+    md = e.clientX
+    });
+  playBoard.addEventListener("mouseup",(e) => {
+    mu = e.clientX  
+    });
+  playBoard.addEventListener("mousedown",(e) => {
+    mdY = e.clientY
+    });
+  playBoard.addEventListener("mouseup",(e) => {
+    muY = e.clientY
+    });
+
+  if(md > mu && velocityX != 1){
+    velocityX = -1;
+    velocityY = 0;
+  }
+  else if(md < mu && velocityX != -1){
+    velocityX = 1;
+    velocityY = 0;
+  }
+  else if (mdY > muY && velocityY != 1) {
+    velocityX = 0;
+    velocityY = -1;
+}
+  else if (mdY < muY && velocityY != -1) {
+    velocityX = 0;
+    velocityY = 1;
+}
+}
+
 
 const changeDirection = (e) => {
   guide.style.display = "none";
