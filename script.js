@@ -285,35 +285,35 @@ function modeSelect() {
     modeElement.innerText = `Mode: Difficile`;
   }
 }
-document.addEventListener("touchmove",touchTactile);
-function touchTactile(eventTac){
-  eventTac.preventDefault();
-  playBoard.addEventListener("touchstart",(e) => {
-    md = e.clientX;
-    mdY = e.clientY;
-    });
-  playBoard.addEventListener("touchend",(e) => {
-    mu = e.clientX;
-    muY = e.clientY;
-      });  
+// document.addEventListener("touchmove",touchTactile);
+// function touchTactile(eventTac){
+//   eventTac.preventDefault();
+//   playBoard.addEventListener("touchstart",(e) => {
+//     md = e.clientX;
+//     mdY = e.clientY;
+//     });
+//   playBoard.addEventListener("touchend",(e) => {
+//     mu = e.clientX;
+//     muY = e.clientY;
+//       });  
 
-  if(md > mu && velocityX != 1){
-    velocityX = -1;
-    velocityY = 0;
-  }
-  else if(md < mu && velocityX != -1){
-    velocityX = 1;
-    velocityY = 0;
-  }
-  else if (mdY > muY && velocityY != 1) {
-    velocityX = 0;
-    velocityY = -1;
-}
-  else if (mdY < muY && velocityY != -1) {
-    velocityX = 0;
-    velocityY = 1;
-}
-}
+//   if(md > mu && velocityX != 1){
+//     velocityX = -1;
+//     velocityY = 0;
+//   }
+//   else if(md < mu && velocityX != -1){
+//     velocityX = 1;
+//     velocityY = 0;
+//   }
+//   else if (mdY > muY && velocityY != 1) {
+//     velocityX = 0;
+//     velocityY = -1;
+// }
+//   else if (mdY < muY && velocityY != -1) {
+//     velocityX = 0;
+//     velocityY = 1;
+// }
+// }
 
 
 const changeDirection = (e) => {
