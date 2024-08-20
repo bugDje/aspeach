@@ -317,6 +317,7 @@ function modeSelect() {
 
 
 const changeDirection = (e) => {
+  e.preventDefault();
   guide.style.display = "none";
   // associe touche clavier direction serpent && evite qu'on puisse revenir en arriere
   if (e.key === "ArrowUp" && velocityY != 1) {
