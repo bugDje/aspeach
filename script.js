@@ -315,9 +315,11 @@ function modeSelect() {
 // }
 // }
 
+function bloqueSaisie(evt) {
+  evt.preventDefault(); 
+}
 
-const changeDirection = (e) => {
-  e.preventDefault();
+const changeDirection = (e) => {   
   guide.style.display = "none";
   // associe touche clavier direction serpent && evite qu'on puisse revenir en arriere
   if (e.key === "ArrowUp" && velocityY != 1) {
@@ -422,3 +424,4 @@ impossible.addEventListener("click", fImpossible);
 
 // commande
 document.addEventListener("keydown", changeDirection);
+document.addEventListener("keydown", bloqueSaisie,false);
