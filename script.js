@@ -319,9 +319,12 @@ function bloqueSaisie(evt) {
   evt.preventDefault(); 
 }
 
-const changeDirection = (e) => {   
+let startX = null; // Pour stocker la position de départ du toucher
+let startY = null; // Pour stocker la position de départ du toucher
+
+const changeDirection = (e) => {
   guide.style.display = "none";
-  // associe touche clavier direction serpent && evite qu'on puisse revenir en arriere
+  // Associe touche clavier direction serpent && évite qu'on puisse revenir en arrière
   if (e.key === "ArrowUp" && velocityY != 1) {
     velocityX = 0;
     velocityY = -1;
@@ -336,6 +339,50 @@ const changeDirection = (e) => {
     velocityY = 0;
   }
 };
+
+// Gestion des événements tactiles
+const handleTouchStart = (event) => {
+  startX = event.touches[0].clientX; // Enregistre la position X du toucher
+  startY = event.touches[0].clientY; // Enregistre la position X du toucher
+};
+
+const handleTouchMove = (event) => {
+  if (startX === null || startY === null) {
+    return; // Si pas de position de départ, on ne fait rien
+  }
+
+  const currentX = event.touches[0].clientX; // Position X actuelle du toucher
+  const currentY = event.touches[0].clientY; // Position Y actuelle du toucher
+  const diffX = currentY - startX; // Différence de position
+  const diffY = currentX - startY; // Différence de position
+
+  // Détermine la direction en fonction de la différence
+   if (Math.abs(diffX) > Math.abs(diffY)) { // Mouvement horizontal
+    if (diffX > 50 && velocityX != -1) { // Glissement vers la droite
+      velocityX = 1;
+      velocityY = 0;
+    } else if (diffX < -50 && velocityX != 1) { // Glissement vers la gauche
+      velocityX = -1;
+      velocityY = 0;
+    }
+  } else { // Mouvement vertical
+    if (diffY > 50 && velocityY != -1) { // Glissement vers le bas
+      velocityX = 0;
+      velocityY = 1;
+    } else if (diffY < -50 && velocityY != 1) { // Glissement vers le haut
+      velocityX = 0;
+      velocityY = -1;
+    }
+  }
+  //Réinitialise les position de départ après le mouvement
+  startX = null;
+  startY = null;
+};
+
+// Ajoutez les écouteurs d'événements pour le tactile
+const gameArea = document.getElementById('play--board'); // Remplacez par l'ID de votre zone de jeu
+gameArea.addEventListener('touchstart', handleTouchStart);
+gameArea.addEventListener('touchmove', handleTouchMove);
 
 // mode Tactile
 controls.forEach((key) => {
