@@ -353,8 +353,8 @@ const handleTouchMove = (event) => {
 
   const currentX = event.touches[0].clientX; // Position X actuelle du toucher
   const currentY = event.touches[0].clientY; // Position Y actuelle du toucher
-  const diffX = currentY - startX; // Différence de position
-  const diffY = currentX - startY; // Différence de position
+  const diffX = currentX - startX; // Différence de position
+  const diffY = currentY - startY; // Différence de position
 
   // Détermine la direction en fonction de la différence
    if (Math.abs(diffX) > Math.abs(diffY)) { // Mouvement horizontal
