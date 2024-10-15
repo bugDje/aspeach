@@ -1,28 +1,35 @@
 function fullS() {
+  wrapQuit.style.display = "flex";
   const elem = document.documentElement; // Sélectionne l'élément racine (html)
 
   if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-  } else if (elem.mozRequestFullScreen) { // Firefox
-      elem.mozRequestFullScreen();
-  } else if (elem.webkitRequestFullscreen) { // Chrome, Safari et Opera
-      elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { // IE/Edge
-      elem.msRequestFullscreen();
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) {
+    // Firefox
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) {
+    // Chrome, Safari et Opera
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) {
+    // IE/Edge
+    elem.msRequestFullscreen();
   }
-};
+}
 function exitS() {
+  wrapQuit.style.display = "none";
   if (document.exitFullscreen) {
-      document.exitFullscreen();
-  } else if (document.mozCancelFullScreen) { // Firefox
-      document.mozCancelFullScreen();
-  } else if (document.webkitExitFullscreen) { // Chrome, Safari et Opera
-      document.webkitExitFullscreen();
-  } else if (document.msExitFullscreen) { // IE/Edge
-      document.msExitFullscreen();
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    // Firefox
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) {
+    // Chrome, Safari et Opera
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) {
+    // IE/Edge
+    document.msExitFullscreen();
   }
-};
-
+}
 
 const playBoard = document.querySelector(".play-board");
 const wrapper = document.querySelector(".wrapper");
@@ -40,6 +47,8 @@ const mode = document.querySelector(".play-mode");
 const menuOver = document.querySelector(".game-over");
 const replay = document.querySelector(".replay");
 const quit = document.querySelector(".quit");
+const quitGame = document.querySelector(".quit-game");
+const wrapQuit = document.querySelector(".wrap-quit");
 const continuer = document.querySelector(".continuer");
 const modeButton = document.querySelector(".mode-btn");
 const snake = document.querySelector("#snake-img");
@@ -66,8 +75,6 @@ let count = 0;
 let loaded = false;
 let toucheMur = true;
 let md, mu, muY, mdY;
-
-
 
 // loading
 const interval = setInterval(() => {
@@ -97,8 +104,6 @@ window.addEventListener("load", () => {
     loadingDiv.style.display = "none";
   }, 450);
 });
-  
-
 
 const btnRing = () => {
   const audio = new Audio();
@@ -250,6 +255,7 @@ const handleGameOver = () => {
 };
 
 continuer.addEventListener("click", () => {
+  console.log("continuer !");
   serpentRing0();
   menu.style.visibility = "hidden";
   mode.style.visibility = "visible";
@@ -264,6 +270,11 @@ modeButton.addEventListener("click", () => {
   reloadGame();
 });
 quit.addEventListener("click", () => {
+  btnRing();
+  exitS();
+  location.reload();
+});
+quitGame.addEventListener("click", () => {
   btnRing();
   exitS();
   location.reload();
@@ -318,42 +329,14 @@ function modeSelect() {
     modeElement.innerText = `Mode: Difficile`;
   }
 }
-// document.addEventListener("touchmove",touchTactile);
-// function touchTactile(eventTac){
-//   eventTac.preventDefault();
-//   playBoard.addEventListener("touchstart",(e) => {
-//     md = e.clientX;
-//     mdY = e.clientY;
-//     });
-//   playBoard.addEventListener("touchend",(e) => {
-//     mu = e.clientX;
-//     muY = e.clientY;
-//       });  
-
-//   if(md > mu && velocityX != 1){
-//     velocityX = -1;
-//     velocityY = 0;
-//   }
-//   else if(md < mu && velocityX != -1){
-//     velocityX = 1;
-//     velocityY = 0;
-//   }
-//   else if (mdY > muY && velocityY != 1) {
-//     velocityX = 0;
-//     velocityY = -1;
-// }
-//   else if (mdY < muY && velocityY != -1) {
-//     velocityX = 0;
-//     velocityY = 1;
-// }
-// }
 
 let startX = null; // Pour stocker la position de départ du toucher
 let startY = null; // Pour stocker la position de départ du toucher
 
 const changeDirection = (e) => {
-  guide.style.display = "none";  
-  guideMobile.style.display = "none";  
+  e.preventDefault();
+  guide.style.display = "none";
+  guideMobile.style.display = "none";
   // Associe touche clavier direction serpent && évite qu'on puisse revenir en arrière
   if (e.key === "ArrowUp" && velocityY != 1) {
     velocityX = 0;
@@ -390,19 +373,25 @@ const handleTouchMove = (event) => {
   const diffY = currentY - startY; // Différence de position
 
   // Détermine la direction en fonction de la différence
-   if (Math.abs(diffX) > Math.abs(diffY)) { // Mouvement horizontal
-    if (diffX > 50 && velocityX != -1) { // Glissement vers la droite
+  if (Math.abs(diffX) > Math.abs(diffY)) {
+    // Mouvement horizontal
+    if (diffX > 50 && velocityX != -1) {
+      // Glissement vers la droite
       velocityX = 1;
       velocityY = 0;
-    } else if (diffX < -50 && velocityX != 1) { // Glissement vers la gauche
+    } else if (diffX < -50 && velocityX != 1) {
+      // Glissement vers la gauche
       velocityX = -1;
       velocityY = 0;
     }
-  } else { // Mouvement vertical
-    if (diffY > 50 && velocityY != -1) { // Glissement vers le bas
+  } else {
+    // Mouvement vertical
+    if (diffY > 50 && velocityY != -1) {
+      // Glissement vers le bas
       velocityX = 0;
       velocityY = 1;
-    } else if (diffY < -50 && velocityY != 1) { // Glissement vers le haut
+    } else if (diffY < -50 && velocityY != 1) {
+      // Glissement vers le haut
       velocityX = 0;
       velocityY = -1;
     }
@@ -415,19 +404,10 @@ const handleTouchEnd = () => {
 };
 
 // Ajoutez les écouteurs d'événements pour le tactile
-const gameArea = document.getElementById('play--board'); // Remplacez par l'ID de votre zone de jeu
-gameArea.addEventListener('touchstart', handleTouchStart);
-gameArea.addEventListener('touchmove', handleTouchMove);
-gameArea.addEventListener('touchend', handleTouchEnd);
-
-// mode Tactile
-controls.forEach((key) => {
-  key.addEventListener("click", () =>
-    changeDirection({
-      key: key.dataset.key,
-    })
-  );
-});
+const gameArea = document.getElementById("play--board"); 
+gameArea.addEventListener("touchstart", handleTouchStart);
+gameArea.addEventListener("touchmove", handleTouchMove);
+gameArea.addEventListener("touchend", handleTouchEnd);
 
 const initGame = () => {
   if (gameOver) return handleGameOver();
@@ -507,4 +487,4 @@ impossible.addEventListener("click", fImpossible);
 
 // commande
 document.addEventListener("keydown", changeDirection);
-document.addEventListener("keydown", bloqueSaisie,false);
+document.addEventListener("keydown", bloqueSaisie, false);

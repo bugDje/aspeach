@@ -259,7 +259,7 @@ div.game-over ul li:nth-child(2):hover {
   width: 78vmin;
   height: 90vmin;
   background-color: greenyellow;
-  border: 3px solid forestgreen;
+  border: 3px solid rgb(0, 0, 0);
   border-radius: 5px;
 }
 .wrapper h1 {
@@ -282,14 +282,24 @@ div.game-over ul li:nth-child(2):hover {
   display: flex;
   justify-content: space-between;
 }
+.wrap_board{
+  display: grid;
+  place-items: center; 
+  margin: 20px; 
+  background-color: #adff2f; 
+}
 .play-board {
-  height: 90%;
-  width: 100%;
+  border: 2px solid #74ba74;
+  max-width: 600px; 
+  max-height: 600px; 
+  width: 100%; 
+  height: auto; 
+  aspect-ratio: 1; 
   background-color: lightgreen;
   display: grid;
   grid-template: repeat(30, 1fr) / repeat(30, 1fr);
 }
-.play-board .food {   
+.play-board .food {  
   background-color: #fa1;
   display: block;
 }
@@ -311,49 +321,31 @@ div.game-over ul li:nth-child(2):hover {
   right: 50%;
   position: absolute;
 }
-.controls {
-  display: none;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2,1fr);
-  justify-items: center;
+.wrap-quit{
+  display:none;
+  justify-content: space-around;  
 }
-img.touch:nth-child(4) { 
-  height: 55px;
-  width: 95px;
-  margin-top: -17px;
- grid-row: 2;
- grid-column: 2;
-}
-img.touch:nth-child(2) { 
-  height: 55px;
-  width: 95px;  
-}
-img.touch:nth-child(1) { 
-  height: 70px;
-  margin: 20px 0px 0px 3px;
-  width: 100%;
-
-}
-img.touch:nth-child(3) { 
-  height: 70px;
-  margin: 20px 3px 0px 0px;
-  width: 100%;
-
-}
-img.touch {
-  margin: 10px 0;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px black;
+.quit-game{
+  font-size: 1.4em;
+  user-select: none;
+  padding: 2px 5px;
   cursor: pointer;
-  text-align: center;
-  width: 100%;
-  height: 100%;
+  box-shadow: 1px 1px 2px black;
+  border-radius: 7px;
+  margin: 5px;
+  display: flex;
+  justify-content: space-around;
+  background-color: #90ee90;
+    color: #006400;
+  letter-spacing: 1px;
+  font-weight: bolder;
 }
-img.touch:active {
-  box-shadow: inset 0px 0px 5px black;
-  cursor: default;
+.quit-game:active .texte {
+  font-size: 0.98em 
 }
-
+.texte {
+  transition: font-size 0.2s; 
+}
 /* footer */
 .dje-wrap {
   min-height: 100%;

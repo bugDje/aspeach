@@ -14,7 +14,8 @@
       <section>
         <div class="loading">
           <div class="loading-container">
-            <div class="number"><span id="loadCount">0</span><span>%</span>
+            <div class="number">
+              <span id="loadCount">0</span><span>%</span>
             </div>
             <div id="bar">
               <div id="progress"></div>
@@ -50,7 +51,8 @@
             </ul>
             <h3 class="mode">Mode Crescendo</h3>
             <p style="font-size: 14px">
-              (Tu peux traverser les murs, par contre, plus tu grandis et plus ton serpent va vite)
+              (Tu peux traverser les murs, par contre, plus tu grandis et plus
+              ton serpent va vite)
             </p>
             <ul class="wrap-liste">
               <li class="impossible">Crescendo</li>
@@ -73,42 +75,27 @@
               <span class="mode-jeu">Mode: Aucun</span>
               <span class="high-score"></span>
             </div>
-            <div class="play-board" id="play--board"></div>
-            <div class="guide"><p>"Utilise les flèches de ton clavier pour diriger le serpent"</p></div>
-            <div class="guide-mobile"><p>"Utilise l'ecran tactile pour diriger le serpent"</p></div>
-            <!-- <div class="controls">
-              <img
-                data-key="ArrowLeft"
-                class="touch"
-                src="image/left.svg"
-                alt="touche left"
-              />
-              <img
-                data-key="ArrowUp"
-                class="touch"
-                src="image/up.svg"
-                alt="touche up"
-              />
-              <img
-                data-key="ArrowRight"
-                class="touch"
-                src="image/right.svg"
-                alt="touche right"
-              />
-              <img
-                data-key="ArrowDown"
-                class="touch"
-                src="image/down.svg"
-                alt="touche down"
-              />
-            </div> -->
+            <div class="wrap_board">
+              <div class="play-board" id="play--board"></div>
+              <div class="guide">
+                <p>
+                  "Utilise les flèches de ton clavier pour diriger le serpent"
+                </p>
+              </div>
+              <div class="guide-mobile">
+                <p>"Utilise l'ecran tactile pour diriger le serpent"</p>
+              </div>
+            </div>
           </div>
+        </div>
+        <div class="wrap-quit">
+          <button class="quit-game"><span class="texte">Quitter</span></button>
         </div>
       </section>
     </div>
     <footer>
       <div class="dje-footer">
-        <span>&copy; coDje 2024 - tous droits réservés</span><span>V1.43</span>
+        <span>&copy; coDje 2024 - tous droits réservés</span><span>V1.5</span>
       </div>
     </footer>
   </body>
