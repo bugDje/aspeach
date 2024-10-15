@@ -1,3 +1,29 @@
+function fullS() {
+  const elem = document.documentElement; // Sélectionne l'élément racine (html)
+
+  if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { // Firefox
+      elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { // Chrome, Safari et Opera
+      elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { // IE/Edge
+      elem.msRequestFullscreen();
+  }
+};
+function exitS() {
+  if (document.exitFullscreen) {
+      document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) { // Firefox
+      document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) { // Chrome, Safari et Opera
+      document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { // IE/Edge
+      document.msExitFullscreen();
+  }
+};
+
+
 const playBoard = document.querySelector(".play-board");
 const wrapper = document.querySelector(".wrapper");
 const shake = document.querySelector(".shake");
@@ -18,6 +44,7 @@ const continuer = document.querySelector(".continuer");
 const modeButton = document.querySelector(".mode-btn");
 const snake = document.querySelector("#snake-img");
 const guide = document.querySelector(".guide");
+const guideMobile = document.querySelector(".guide-mobile");
 const loadingDiv = document.querySelector(".loading");
 
 let gameOver = false;
@@ -105,6 +132,7 @@ const pop = () => {
 };
 
 function fFacile() {
+  fullS();
   setIntervalId = setInterval(initGame, 300);
   vitesse = 300;
   mode.style.visibility = "hidden";
@@ -118,6 +146,7 @@ function fFacile() {
   console.log(toucheMur);
 }
 function fMoyen() {
+  fullS();
   setIntervalId = setInterval(initGame, 200);
   vitesse = 200;
   moy = true;
@@ -129,6 +158,7 @@ function fMoyen() {
   mode.style.visibility = "hidden";
 }
 function fDifficile() {
+  fullS();
   setIntervalId = setInterval(initGame, 100);
   vitesse = 100;
   dif = true;
@@ -140,6 +170,7 @@ function fDifficile() {
   mode.style.visibility = "hidden";
 }
 function fImpossible() {
+  fullS();
   setIntervalId = setInterval(initGame, 150);
   vitesse = 150;
   cre = true;
@@ -225,6 +256,7 @@ continuer.addEventListener("click", () => {
 });
 modeButton.addEventListener("click", () => {
   btnRing();
+  exitS();
   menuOver.style.visibility = "hidden";
   mode.style.visibility = "visible";
   scoreElement.innerText = `Score: 0`;
@@ -233,6 +265,7 @@ modeButton.addEventListener("click", () => {
 });
 quit.addEventListener("click", () => {
   btnRing();
+  exitS();
   location.reload();
 });
 replay.addEventListener("click", () => {
@@ -319,7 +352,8 @@ let startX = null; // Pour stocker la position de départ du toucher
 let startY = null; // Pour stocker la position de départ du toucher
 
 const changeDirection = (e) => {
-  guide.style.display = "none";
+  guide.style.display = "none";  
+  guideMobile.style.display = "none";  
   // Associe touche clavier direction serpent && évite qu'on puisse revenir en arrière
   if (e.key === "ArrowUp" && velocityY != 1) {
     velocityX = 0;
@@ -338,6 +372,8 @@ const changeDirection = (e) => {
 
 // Gestion des événements tactiles
 const handleTouchStart = (event) => {
+  guideMobile.style.display = "none";
+  guide.style.display = "none";
   startX = event.touches[0].clientX; // Enregistre la position X du toucher
   startY = event.touches[0].clientY; // Enregistre la position X du toucher
 };
@@ -371,7 +407,9 @@ const handleTouchMove = (event) => {
       velocityY = -1;
     }
   }
-  //Réinitialise les position de départ après le mouvement
+};
+
+const handleTouchEnd = () => {
   startX = null;
   startY = null;
 };
@@ -380,6 +418,7 @@ const handleTouchMove = (event) => {
 const gameArea = document.getElementById('play--board'); // Remplacez par l'ID de votre zone de jeu
 gameArea.addEventListener('touchstart', handleTouchStart);
 gameArea.addEventListener('touchmove', handleTouchMove);
+gameArea.addEventListener('touchend', handleTouchEnd);
 
 // mode Tactile
 controls.forEach((key) => {

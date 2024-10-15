@@ -303,6 +303,14 @@ div.game-over ul li:nth-child(2):hover {
   right: 50%;
   position: absolute;
 }
+.guide-mobile{
+  display: none;
+  z-index: 0;
+  transform: translate(50%, 50%);
+  top: 50%;
+  right: 50%;
+  position: absolute;
+}
 .controls {
   display: none;
   grid-template-columns: repeat(3, 1fr);
@@ -400,6 +408,9 @@ img.touch:active {
   }
   .guide{
     display:none;
+  } 
+  .guide-mobile{
+    display:block;
   } 
   
   ul.wrap-liste li {
