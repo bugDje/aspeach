@@ -315,10 +315,6 @@ function modeSelect() {
 // }
 // }
 
-function bloqueSaisie(evt) {
-  evt.preventDefault(); 
-}
-
 let startX = null; // Pour stocker la position de départ du toucher
 let startY = null; // Pour stocker la position de départ du toucher
 
@@ -347,6 +343,7 @@ const handleTouchStart = (event) => {
 };
 
 const handleTouchMove = (event) => {
+  event.preventDefault(); // Empêche le comportement par défaut (défilement)
   if (startX === null || startY === null) {
     return; // Si pas de position de départ, on ne fait rien
   }
