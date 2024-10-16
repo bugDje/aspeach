@@ -402,6 +402,8 @@ div.game-over ul li:nth-child(2):hover {
     display:none;
   } 
   .guide-mobile{
+    text-align: center;
+    margin-top: -115px;
     display:block;
   } 
   
